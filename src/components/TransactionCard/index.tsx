@@ -14,24 +14,24 @@ import {
 interface Category {
   name: string;
   icon: string;
-}  
+}
 
 export interface TransactionCardProps {
-  type: 'positive' | 'negative',
-  title: string; 
-  amount: string; 
-  category: Category; 
-  date: string 
+  type: "positive" | "negative";
+  name: string;
+  amount: string;
+  category: Category;
+  date: string;
 }
 
 export interface Props {
   data: TransactionCardProps;
 }
 
-export function TransactionCard({data}: Props) {
+export function TransactionCard({ data }: Props) {
   return (
     <Container>
-      <Title>{data.title}</Title>
+      <Title>{data.name}</Title>
 
       <Amount type={data.type}>
         {data.type === "negative" && "- "}
