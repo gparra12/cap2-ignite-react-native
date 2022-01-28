@@ -1,6 +1,7 @@
 import React from "react";
 import AppLoading from "expo-app-loading";
 import { ThemeProvider } from "styled-components";
+import { StatusBar } from "react-native";
 
 import "intl";
 import "intl/locale-data/jsonp/pt-BR";
@@ -17,6 +18,8 @@ import theme from "./src/global/styles/theme";
 import { NavigationContainer } from "@react-navigation/native";
 import { AppRoutes } from "./src/routes/app.routes";
 
+import { SignIn } from "./src/pages/SignIn";
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
@@ -31,7 +34,8 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
-        <AppRoutes />
+        <StatusBar barStyle="light-content" />
+        <SignIn />
       </NavigationContainer>
     </ThemeProvider>
   );
