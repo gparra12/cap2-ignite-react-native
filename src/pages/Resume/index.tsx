@@ -6,6 +6,7 @@ import { addMonths, subMonths, format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useFocusEffect } from "@react-navigation/native";
 import { useTheme } from "styled-components";
+import { useAuth } from "../../hooks/auth";
 
 import { VictoryPie } from "victory-native";
 import { RFValue } from "react-native-responsive-fontsize";
@@ -54,6 +55,8 @@ export function Resume() {
   );
   const theme = useTheme();
 
+  const { user } = useAuth();
+
   function handleDateChange(action: "next" | "previous") {
     action === "next"
       ? setSelectedDate(addMonths(selectedDate, 1))
@@ -62,7 +65,7 @@ export function Resume() {
 
   async function loadData() {
     setIsLoading(true);
-    const dataKey = "@gofinances:transactions";
+    const dataKey = `@gofinances:transactions_user:${user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     const responseFormatted = response ? JSON.parse(response) : [];
 
